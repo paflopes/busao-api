@@ -1,14 +1,13 @@
 express = require "express"
 bodyParser = require "body-parser"
+controllers = require "./controllers"
 
 app = express()
 
 app.use bodyParser.urlencoded({ extended: false })
 app.use bodyParser.json({})
 
-{ BasicController } = require('./controller/basicController')
-
-controller = new BasicController(app)
+controllers(app)
 
 app.get "/", (req, res) ->
   res.send 'Hello World!'
